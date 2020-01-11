@@ -1,0 +1,36 @@
+= content_for :page_title, 'Alterar meus dados'
+
+= simple_form_for(resource, as: resource_name, url: user_registration_path, html: { method: :put }) do |f|
+  = f.error_notification
+
+  = f.input :name,
+            label: "Nome",
+            required: true,
+            autofocus: true
+
+  = f.input :email, required: true
+  - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+    p
+      | Atualmente aguardando confirmação para:
+      = resource.unconfirmed_email
+
+  hr
+
+  = f.input :password,
+            label: "Senha",
+            hint: "deixe em branco se não quiser alterar",
+            required: false,
+            input_html: { autocomplete: "new-password" }
+  = f.input :password_confirmation,
+            label: "Nova senha (confirmação)",
+            required: false,
+            input_html: { autocomplete: "new-password" }
+  = f.input :current_password,
+            label: "Senha atual",
+            hint: "precisamos da senha atual para confirmar",
+            required: true,
+            input_html: { autocomplete: "current-password" }
+
+  = f.button :submit, "Salvar", class: "btn btn-success"
+  '
+  = link_to "Voltar", :back, class: "btn btn-light"

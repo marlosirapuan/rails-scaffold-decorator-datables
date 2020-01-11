@@ -1,0 +1,8 @@
+:verbose: true
+:concurrency: 1
+:logfile: ./log/sidekiq.log
+# Set timeout to 8 on Heroku, longer if you manage your own systems.
+:timeout: 10
+:queues:
+  - default
+  - mailers

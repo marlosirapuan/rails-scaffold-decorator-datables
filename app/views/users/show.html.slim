@@ -1,0 +1,22 @@
+= content_for :page_title, 'Usuário'
+= content_for :page_subtitle, @user
+= content_for :page_button,
+              link_to('Adicionar', new_user_url, class: 'btn btn-primary float-right')
+
+dl
+  dt  Nome
+  dd  = @user.name
+  dt  Email
+  dd  = @user.email
+  dt  Acesso
+  dd  = @user.level
+  dt  Status
+  dd  = @user.label_status
+
+hr
+
+= link_to 'Editar', edit_user_url(@user), class: 'btn btn-secondary' unless @user.new_record?
+'
+= link_to 'Voltar', users_url, class: 'btn btn-light'
+'
+= link_to 'Excluir', user_url(@user), class: 'btn btn-outline-danger float-right', data: { confirm: 'Confirma?', method: :delete }

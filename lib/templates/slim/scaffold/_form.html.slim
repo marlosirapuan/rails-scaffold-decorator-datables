@@ -1,0 +1,13 @@
+= simple_form_for(@<%= singular_table_name %>) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+<%- attributes.each do |attribute| -%>
+  = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+<%- end -%>
+
+  = f.button :submit, class: 'btn-success'
+  '
+  = link_to 'Mostrar', <%= singular_table_name %>_url(@<%= singular_table_name %>), class: 'btn btn-secondary' unless @<%= singular_table_name %>.new_record?
+  '
+  = link_to 'Voltar', <%= plural_table_name %>_url, class: 'btn btn-light'

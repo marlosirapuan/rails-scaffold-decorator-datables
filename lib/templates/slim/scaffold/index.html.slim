@@ -1,0 +1,37 @@
+= content_for :page_title, '<%= plural_table_name.humanize %>'
+= content_for :page_button,
+              link_to('Adicionar', new_<%= singular_table_name %>_url, class: 'btn btn-primary float-right')
+
+table#<%= plural_table_name %>-datatable.table.table-striped.table-bordered.table-hover.table-sm.display.dt-responsive.nowrap [
+  data-source="#{<%= plural_table_name %>_url(format: 'json')}"
+]
+  thead
+    tr
+      th  ID
+    <%- attributes.each do |attribute| -%>
+      th  <%= attribute.name.humanize %>
+    <%- end -%>
+      th  Ações
+
+/ Please generate the datatable file with this command (and remove this tip :P):
+/ $ bundle exec rails g datatable <%= singular_table_name.humanize %>
+
+/ Please generate the file in:
+/ app/javascript/src/pages/<%= singular_table_name %>_page.js
+/ cut and put this code below (and remove this tip too):
+
+document.addEventListener("turbolinks:load", function () {
+  $('#<%= plural_table_name %>-datatable').dataTable({
+    ajax: {
+      url: $('#<%= plural_table_name %>-datatable').data('source')
+    },
+    columns: [
+      { data: 'id' },
+      <%- attributes.each do |attribute| -%>
+      { data: '<%= attribute.name %>' },
+      <%- end -%>
+      { data: 'actions' }
+    ]
+  })
+})
+

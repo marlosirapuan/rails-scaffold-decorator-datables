@@ -1,0 +1,144 @@
+// $enable-shadows: false;
+
+@import './theme.scss';
+@import 'bootstrap/scss/bootstrap.scss';
+@import 'datatables.net-bs4/css/dataTables.bootstrap4.css';
+
+//
+// Main Stylesheet
+//
+body {
+  overflow-x: hidden;
+}
+
+//
+// Sidebar
+//
+$bg-sidebar: $gray-400;
+$bg-sidebar-item: $gray-700;
+
+#sidebar-wrapper {
+  background: $bg-sidebar;
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin .25s ease-out;
+  -moz-transition: margin .25s ease-out;
+  -o-transition: margin .25s ease-out;
+  transition: margin .25s ease-out;
+
+  .sidebar-heading {
+    background: $bg-sidebar-item;
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    width: 15rem;
+
+    &.components {
+      padding: 20px 0;
+    }
+
+    p {
+      color: $body-bg;
+      padding: 10px;
+    }
+
+    li a {
+      color: $body-bg;
+      padding: 10px;
+      display: block;
+
+      &:hover {
+        color: $gray-800;
+        background: $body-bg;
+        text-decoration: none;
+      }
+    }
+  }
+
+  ul ul a {
+    padding-left: 30px !important;
+    background: $bg-sidebar-item;
+  }
+
+  ul li.active>a,
+  a[aria-expanded="true"] {
+    color: $body-bg;
+    background: $bg-sidebar-item;
+  }
+
+  a[data-toggle="collapse"] {
+    position: relative;
+  }
+
+  .dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+  }
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+//
+// DataTables
+//
+//! Fix sort asc/desc icon
+table.dataTable.table-sm .sorting:before,
+table.dataTable.table-sm .sorting_asc:before,
+table.dataTable.table-sm .sorting_desc:before {
+  right: 1.20em;
+}
+
+//! Fix some styling
+div.dataTables_wrapper div.dataTables_filter input {
+  margin-left: 0;
+}
+
+table.table {
+  width: 100% !important;
+
+  > tbody > tr > td {
+    vertical-align: middle;
+  }
+}
+
+table > thead tr th:first-child,
+table > tbody tr td:first-child {
+  width: 2em;
+  min-width: 2em;
+  max-width: 4em;
+  word-break: break-all;
+}
+
+table > thead tr th:last-child,
+table > tbody tr td:last-child {
+  width: 2em;
+  min-width: 4em;
+  word-break: break-all;
+  text-align: center;
+}

@@ -1,0 +1,15 @@
+= simple_form_for(@user) do |f|
+  = f.error_notification
+  = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+
+  = f.input :name
+  = f.input :email
+  = f.input :status,
+            include_blank: false,
+            collection: User.statuses.keys.collect { |status| [User.human_enum_name(:status, status), status] }
+
+  = f.button :submit, class: 'btn-success'
+  '
+  = link_to 'Mostrar', user_url(@user), class: 'btn btn-secondary' unless @user.new_record?
+  '
+  = link_to 'Voltar', users_url, class: 'btn btn-light'

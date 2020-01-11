@@ -1,0 +1,36 @@
+doctype html
+html[lang="en"]
+  head
+    meta[charset="utf-8"]
+    meta[http-equiv="X-UA-Compatible" content="IE=edge"]
+    meta[name="viewport" content="width=device-width, initial-scale=1"]
+    title= [ title, 'Abc' ].compact.join(' - ')
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    #main
+      .container
+
+        .container-fluid.h-100.mt-5
+          .row.justify-content-center.align-items-center.h-100
+            .col.col-sm-12.col-md-8.col-lg-4
+
+              h4
+                .text-center.mb-4.mt-5
+                  = yield :title
+
+              - if alert
+                p.alert.alert-danger
+                  = alert
+
+              - if notice
+                p.alert.alert-info
+                  = notice
+
+              = yield

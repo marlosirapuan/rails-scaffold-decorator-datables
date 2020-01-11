@@ -1,0 +1,15 @@
+= content_for :page_title, 'Usuários'
+= content_for :page_button,
+              link_to('Adicionar', new_user_url, class: 'btn btn-primary float-right')
+
+table#users-datatable.table.table-striped.table-bordered.table-hover.table-sm.display.dt-responsive.nowrap [
+  data-source="#{users_url(format: 'json')}"
+]
+  thead
+    tr
+      th  ID
+      th  Nome
+      th  Email
+      th style='width: 1%;'  Acesso
+      th style='width: 1%;'  Status
+      th  Ações

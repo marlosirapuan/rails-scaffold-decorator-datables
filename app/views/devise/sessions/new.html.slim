@@ -1,0 +1,20 @@
+= content_for :title, 'Acesso restrito'
+
+= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+  = f.input :email,
+            required: true,
+            autofocus: true,
+            input_html: { placeholder: "Entre com o email", autocomplete: "email" }
+
+  = f.input :password,
+            required: true,
+            label: 'Senha',
+            input_html: { placeholder: "Entre com a senha", autocomplete: "current-password" }
+
+  = f.input :remember_me, as: :boolean, label: 'Lembrar de mim' if devise_mapping.rememberable?
+
+  .form-group
+    = f.button :submit, "Acessar", class: 'btn btn-primary btn-block'
+
+  p.text-center
+    = render "devise/shared/links"

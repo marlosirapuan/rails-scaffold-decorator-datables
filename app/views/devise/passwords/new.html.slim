@@ -1,0 +1,16 @@
+= content_for :title, 'Esqueceu sua senha?'
+
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f|
+  = f.error_notification
+
+  .form-group
+    = f.input :email,
+              required: true,
+              autofocus: true,
+              input_html: { autocomplete: "email" }
+
+  .form-group
+    = f.button :submit, "Redefinir minha senha", class: 'btn btn-primary btn-block'
+
+  p.text-center
+    = render "devise/shared/links"

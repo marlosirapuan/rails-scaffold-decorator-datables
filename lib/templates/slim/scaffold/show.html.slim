@@ -1,0 +1,18 @@
+= content_for :page_title, '<%= human_name %>'
+= content_for :page_subtitle, @<%= singular_table_name %>
+= content_for :page_button,
+              link_to('Adicionar', new_<%= singular_table_name %>_url, class: 'btn btn-primary float-right')
+
+dl
+<%- attributes.each do |attribute| -%>
+  dt  <%= attribute.name.humanize %>
+  dd  = @<%= singular_table_name %>.<%= attribute.name %>
+<%- end -%>
+
+hr
+
+= link_to 'Editar', edit_<%= singular_table_name %>_url(@<%= singular_table_name %>), class: 'btn btn-secondary' unless @<%= singular_table_name %>.new_record?
+'
+= link_to 'Voltar', <%= plural_table_name %>_url, class: 'btn btn-light'
+'
+= link_to 'Excluir', post_url(@<%= singular_table_name %>), class: 'btn btn-outline-danger float-right', data: { confirm: 'Confirma?', method: :delete }

@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     @user = user.new(user_params)
 
     if @user.save
-      redirect_to sistema_users_url, notice: 'Usuário cadastrado com sucesso.'
+      redirect_to users_url, notice: 'Usuário cadastrado com sucesso.'
     else
       render :new
     end

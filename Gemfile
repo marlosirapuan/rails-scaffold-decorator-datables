@@ -17,7 +17,7 @@ gem 'dotenv-rails'
 gem 'dalli', '~> 2.7.9'
 gem 'annotate', group: :development
 
-gem 'image_processing', '~> 1.2'
+gem 'image_processing', '~> 1.12'
 gem 'aws-sdk-s3', require: false
 
 gem 'sidekiq'

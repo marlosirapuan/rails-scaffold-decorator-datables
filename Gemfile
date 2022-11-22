@@ -14,7 +14,7 @@ gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'redis', '~> 4.0'
 gem 'dotenv-rails'
-gem 'dalli', '~> 2.7.9'
+gem 'dalli', '~> 3.2.3'
 gem 'annotate', group: :development
 
 gem 'image_processing', '~> 1.2'
